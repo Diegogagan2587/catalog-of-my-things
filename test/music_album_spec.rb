@@ -17,13 +17,13 @@ describe MusicAlbum do
     )
   end
 
-  it 'Should return true if parent\' method returns true AND if on_spotify 
+  it 'Should return true if parent\' method .can_be_archived? returns true AND if on_spotify 
   equals true ' do 
     allow(@album).to receive(:on_spotify) {true}
     expect(@album.can_be_archived?).to eql(true)
   end
 
-  it 'Should return false if parent method is true AND if on_spotify is false' do
+  it 'Should return false if parent method .can_be_archived? is true AND if on_spotify is false' do
     allow(@album).to receive(:on_spotify) {false}
     expect(@album.can_be_archived?).to eql(false)
   end

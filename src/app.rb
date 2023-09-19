@@ -1,12 +1,12 @@
 require_relative 'item'
 
-    class App
-        def initialize
-            @items = []
-            @genres = Set.new
-            @labels = Set.new
-            @authors = Set.new
-        end
+class App
+  def initialize
+    @items = []
+    @genres = Set.new
+    @labels = Set.new
+    @authors = Set.new
+  end
 
   def run
     options = [
@@ -28,6 +28,6 @@ require_relative 'item'
     gets
     run
   end
-
+end
 main = Main.new
 main.run

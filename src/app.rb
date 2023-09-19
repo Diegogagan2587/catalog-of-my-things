@@ -8,8 +8,12 @@ class App
     @authors = []
   end
 
-  def option_select
-    option = gets.chomp.to_i
+  def exit_app
+    puts 'Thank you for using this app!'
+    exit
+  end
+
+  def option_select(option)
     case option
     when 1
       list_books
@@ -23,36 +27,46 @@ class App
       list_labels
     when 6
       list_authors
-    when 7
+    end
+  end
+
+  def add_element(input)
+    puts [
+      'Select an option',
+      '1. Add a book',
+      '2. Add a music album',
+      '3. Add a game'
+    ]
+    case input
+    when 1
       add_book
-    when 8
+    when 2
       add_music_album
-    when 9
+    when 3
       add_game
-    when 10
-      puts 'Thank you for using this app!'
-      exit
-    else
-      puts 'Invalid option, try again.'
     end
   end
 
   def run
-    options = [
-      'List all books',
-      'List all music albums',
-      'List all games',
-      'List all genres',
-      'List all labels',
-      'List all authors',
-      'Add a book',
-      'Add a music album',
-      'Add a game',
-      'Exit'
+    puts [
+      '1. List all books',
+      '2. List all music albums',
+      '3. List all games',
+      '4. List all genres',
+      '5. List all labels',
+      '6. List all authors',
+      '7. Add Item',
+      '8. Exit'
     ]
+
     puts "Welcome, please select an option by entering the corresponding number: \n\n"
-    options.each_with_index { |option, index| puts "#{index + 1} - #{option}" }
-    option_select
+    input = gets.chomp.to_i
+
+    exit_app if (input = 8)
+    add_element(input) if (input = 7)
+    puts 'Invalid option, try again.' if input > 8
+
+    option_select(input)
     puts "\nPress Enter key to continue..."
     gets
     run

@@ -57,6 +57,4 @@ class App
     gets
     run
   end
-
-
 end

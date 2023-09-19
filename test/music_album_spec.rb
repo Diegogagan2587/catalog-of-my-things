@@ -1,12 +1,12 @@
 require_relative '../src/music_album'
 require 'date'
-  
+
 describe MusicAlbum do
   before :each do
-    @genre = "Rock"
-    @author = "Metallica"
-    @source = "Internet Stream"
-    @label = "Best Exits"
+    @genre = 'Rock'
+    @author = 'Metallica'
+    @source = 'Internet Stream'
+    @label = 'Best Exits'
     @publish_date = Date.new(2023, 9, 19)
     @on_spotify = false
     @album = MusicAlbum.new(@genre, @author, @source, @label, @publish_date, @on_spotify)
@@ -20,4 +20,3 @@ describe MusicAlbum do
     expect(@album.on_spotify).to eql(@on_spotify)
   end
 end
-

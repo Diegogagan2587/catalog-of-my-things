@@ -1,14 +1,13 @@
 class Item
   def initialize(genre, author, source, label, publish_date, archived: false)
     @id = Random.rand(1..1000)
-    @genre = genre        
+    @genre = genre
     @author = author
     @source = source
     @label = label
     @publish_date = publish_date
     @archived = archived
   end
-
 
   def can_be_archived?
     years_since_published = Time.now.year - @published_date.year
@@ -23,5 +22,4 @@ class Item
       puts "#{@genre} cannot be archived yet."
     end
   end
-
 end

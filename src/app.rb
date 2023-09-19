@@ -3,9 +3,12 @@ require_relative 'item'
 class App
   def initialize
     @items = []
-    @genres = Set.new
-    @labels = Set.new
-    @authors = Set.new
+    @genres = []
+    @labels = []
+    @authors = []
+  end
+
+  def option_select
   end
 
   def run
@@ -23,11 +26,11 @@ class App
     ]
     puts "Welcome, please select an option by entering the corresponding number: \n\n"
     options.each_with_index { |option, index| puts "#{index + 1} - #{option}" }
-    @app.option_select
+    option_select
     puts "\nPress Enter key to continue..."
     gets
     run
   end
+
+
 end
-main = Main.new
-main.run

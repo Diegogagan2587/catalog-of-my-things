@@ -62,8 +62,8 @@ class App
     puts "Welcome, please select an option by entering the corresponding number: \n\n"
     input = gets.chomp.to_i
 
-    exit_app if (input = 8)
-    add_element(input) if (input = 7)
+    exit_app if input == 8
+    add_element(input) if input == 7
     puts 'Invalid option, try again.' if input > 8
 
     option_select(input)

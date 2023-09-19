@@ -13,7 +13,7 @@ describe MusicAlbum do
       "Internet",
       "Best one",
       "1990-12-25",
-      false
+      archived:false
     )
   end
 

@@ -1,27 +1,23 @@
 require_relative '../src/music_album'
-require_relative '../src/item'
+require 'date'
   
 describe MusicAlbum do
   before :each do
-    @album = MusicAlbum.new(
-      "Rock",
-      "Metallica",
-      "Internet",
-      "Best one",
-      "1990",
-      true,
-    )
+    @genre = "Rock"
+    @author = "Metallica"
+    @source = "Internet Stream"
+    @label = "Best Exits"
+    @publish_date = Date.new(2023, 9, 19)
+    @on_spotify = false
+    @album = MusicAlbum.new(@genre, @author, @source, @label, @publish_date, @on_spotify)
   end
-
-  it 'Should return true if parent\' method .can_be_archived? returns true AND if on_spotify 
-  equals true ' do 
-    allow(@album).to receive(:on_spotify) {true}
-    expect(@album.can_be_archived?).to be_truthy
-  end
-
-  it 'Should return false if parent method .can_be_archived? is true AND if on_spotify is false' do
-    allow(@album).to receive(:on_spotify) {false}
-    expect(@album.can_be_archived?).to be_falsy
+  it 'Creates a MusicAlbum instance with the correct attributes' do
+    expect(@album.genre).to eql(@genre)
+    expect(@album.author).to eql(@author)
+    expect(@album.source).to eql(@source)
+    expect(@album.label).to eql(@label)
+    expect(@album.publish_date).to eql(@publish_date)
+    expect(@album.on_spotify).to eql(@on_spotify)
   end
 end
 

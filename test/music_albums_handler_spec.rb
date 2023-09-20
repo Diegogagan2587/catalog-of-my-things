@@ -26,12 +26,18 @@ describe MusicAlbumHandler do
   end
 
   it 'Should List all music albums' do
-    music_album_1 = MusicAlbum.new(@album_attributes)
-    music_album_2 = MusicAlbum.new(@album_attributes)
-    allow(music_album_1).to receive(:id) { 1 }
-    allow(music_album_2).to receive(:id) { 2 }
-    items = [music_album_1, music_album_2]
-    expected_output = /Id:\s*1\s*Genre:\s*Rock\s*Author:\s*Metallica\s*Source:\s*Internet Stream\s*Label:\s*Best Exits\s*Publish_date:\s*2023-09-19\s*Is on spotify\?:\s*false\s*Id:\s*2\s*Genre:\s*Rock\s*Author:\s*Metallica\s*Source:\s*Internet Stream\s*Label:\s*Best Exits\s*Publish_date:\s*2023-09-19\s*Is on spotify\?:\s*false/
+    music_album_one = MusicAlbum.new(@album_attributes)
+    music_album_two = MusicAlbum.new(@album_attributes)
+    allow(music_album_one).to receive(:id) { 1 }
+    allow(music_album_two).to receive(:id) { 2 }
+    items = [music_album_one, music_album_two]
+
+    expected_output = Regexp.new(<<~PATTERN, Regexp::MULTILINE)
+      Id:\\s*1\\s*Genre:\\s*Rock\\s*Author:\\s*Metallica\\s*Source:\\s*Internet Stream\\s*
+      Label:\\s*Best Exits\\s*Publish_date:\\s*2023-09-19\\s*Is on spotify\\?:\\s*false\\s*
+      Id:\\s*2\\s*Genre:\\s*Rock\\s*Author:\\s*Metallica\\s*Source:\\s*Internet Stream\\s*
+      Label:\\s*Best Exits\\s*Publish_date:\\s*2023-09-19\\s*Is on spotify\\?:\\s*false
+    PATTERN
     expect { @music_album_handler.list_all_music_albums(items) }.to output(
       expected_output
     ).to_stdout
@@ -43,7 +49,10 @@ describe MusicAlbumHandler do
     allow(music_album).to receive(:id) { 1 }
     allow(other_item).to receive(:id) { 2 }
     items = [music_album, other_item]
-    expected_output = /Id:\s*1\s*Genre:\s*Rock\s*Author:\s*Metallica\s*Source:\s*Internet Stream\s*Label:\s*Best Exits\s*Publish_date:\s*2023-09-19\s*Is on spotify\?:\s*false\s*/
+    expected_output = Regexp.new(<<~PATTERN, Regexp::MULTILINE)
+      Id:\\s*1\\s*Genre:\\s*Rock\\s*Author:\\s*Metallica\\s*Source:\\s*Internet Stream\\s*
+      Label:\\s*Best Exits\\s*Publish_date:\\s*2023-09-19\\s*Is on spotify\\?:\\s*false\\s*
+    PATTERN
 
     expect { @music_album_handler.list_all_music_albums(items) }.to output(
       expected_output

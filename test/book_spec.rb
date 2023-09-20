@@ -1,5 +1,5 @@
-require_relative '../src/item.rb'
-require_relative '../src/book.rb'  
+require_relative '../src/item'
+require_relative '../src/book'
 
 describe Book do
   let(:label) { double('Label') }

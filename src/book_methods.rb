@@ -16,38 +16,6 @@ module BookMethods
     puts 'Book added successfully.'
   end
 
-  private
-
-  def collect_book_details
-    details = {}
-    puts 'Enter book details:'
-    print 'Genre: '
-    details[:genre] = gets.chomp
-    print 'Author: '
-    details[:author] = gets.chomp
-    print 'Source: '
-    details[:source] = gets.chomp
-    print 'Label: '
-    details[:label_title] = gets.chomp
-    print 'Publish Date: '
-    details[:publish_date] = gets.chomp
-    print 'Cover State: '
-    details[:cover_state] = gets.chomp
-    details
-  end
-
-  def find_or_create_label(label_title)
-    @labels.find { |l| l.title == label_title } || Label.new(label_title, 'DefaultColor')
-  end
-
-  def store_book_and_label(book, label)
-    @items << book
-    return if @labels.include?(label)
-
-    label.add_item(book)
-    @labels << label
-  end
-
   def list_books
     if @items.empty?
       puts 'No books available, please add a new one.'
@@ -67,4 +35,36 @@ module BookMethods
       @labels.each { |label| puts label.title }
     end
   end
+end
+
+  private
+
+def collect_book_details
+  details = {}
+  puts 'Enter book details:'
+  print 'Genre: '
+  details[:genre] = gets.chomp
+  print 'Author: '
+  details[:author] = gets.chomp
+  print 'Source: '
+  details[:source] = gets.chomp
+  print 'Label: '
+  details[:label_title] = gets.chomp
+  print 'Publish Date: '
+  details[:publish_date] = gets.chomp
+  print 'Cover State: '
+  details[:cover_state] = gets.chomp
+  details
+end
+
+def find_or_create_label(label_title)
+  @labels.find { |l| l.title == label_title } || Label.new(label_title, 'DefaultColor')
+end
+
+def store_book_and_label(book, label)
+  @items << book
+  return if @labels.include?(label)
+
+  label.add_item(book)
+  @labels << label
 end

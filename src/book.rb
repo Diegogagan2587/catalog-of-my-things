@@ -13,7 +13,7 @@ class Book < Item
   end
 
   private
-  
+
   def can_be_archived?
     super || @cover_state == 'bad'
   end

@@ -30,14 +30,15 @@ class App
     end
   end
 
-  def add_element(input)
+  def add_element(_input)
     puts [
       'Select an option',
       '1. Add a book',
       '2. Add a music album',
       '3. Add a game'
     ]
-    case input
+    user_input = gets.chomp.to_i
+    case user_input
     when 1
       add_book
     when 2

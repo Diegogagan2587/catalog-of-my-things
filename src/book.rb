@@ -1,5 +1,5 @@
 class Book < Item
-  attr_accessor :cover_state
+  attr_accessor :cover_state, :label
 
   def initialize(params)
     super(
@@ -8,7 +8,6 @@ class Book < Item
       params[:source],
       params[:label],
       params[:publish_date],
-      archived: params[:archived]
     )
     @cover_state = params[:cover_state]
   end

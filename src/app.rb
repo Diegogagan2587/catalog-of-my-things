@@ -1,6 +1,10 @@
 require_relative 'item'
+require_relative 'book'
+require_relative 'label'
+require_relative 'book_methods'
 
 class App
+  include BookMethods
   def initialize
     @items = []
     @genres = []

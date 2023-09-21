@@ -8,6 +8,7 @@ class Author
     @first_name = first_name
     @last_name = last_name
     @id = self.class.id_counter
+    @items = []
   end
 
   attr_reader :id, :items

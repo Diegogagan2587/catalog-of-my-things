@@ -29,11 +29,22 @@ module PreserveBookLabel
 
   def load_books
     return unless File.exist?(BOOKS_FILE)
-
+    
     books = JSON.parse(File.read(BOOKS_FILE))
     books.each do |book|
-      label = find_or_create_label(book['label']['title'])
-      @items << Book.new(book.merge(label: label))
+      label_data = book['label']
+      label = find_or_create_label(label_data['title'])
+      label.color = label_data['color']
+      
+      book_params = {
+        genre: book['genre'],
+        author: book['author'],
+        source: book['source'],
+        label: label,
+        publish_date: book['publish_date'],
+        cover_state: book['cover_state']
+      }
+      @items << Book.new(book_params)
     end
   end
 

@@ -1,4 +1,5 @@
 require_relative '../genre'
+require_relative '../music_album'
 
 class Read
   #then restore genres
@@ -13,6 +14,19 @@ class Read
   end
   #then restore albums
   def and_restore_albums(state)
-    puts 'Restoring'
+    return unless File.exist?('./data/music_albums.json')
+    store = File.open('./data/music_albums.json')
+    albums_data = JSON.parse(store.read)
+    albums_data.each { | album |
+      album = { 
+        genre: Genre.new(album['genre']),
+         author: album['author'],
+          source: album['source'] , 
+          label: album['label'] , 
+          publish_date: album['publish_date'] ,
+           on_spotify:  album['on_spotify']  
+          }
+      state.push(MusicAlbum.new(album))
+    }
   end
 end

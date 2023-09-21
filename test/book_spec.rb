@@ -6,7 +6,7 @@ describe Book do
   let(:params) do
     {
       genre: 'Fiction',
-      author: 'Author Name',
+      publisher: 'Publisher Name',
       source: 'Source Name',
       label: label,
       publish_date: '2022-01-01',
@@ -22,7 +22,7 @@ describe Book do
 
     it 'initializes the Book with given attributes' do
       expect(book.genre).to eq('Fiction')
-      expect(book.author).to eq('Author Name')
+      expect(book.publisher).to eq('Publisher Name')
       expect(book.source).to eq('Source Name')
       expect(book.label).to eq(label)
       expect(book.cover_state).to eq('good')

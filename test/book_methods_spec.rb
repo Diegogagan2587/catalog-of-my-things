@@ -2,9 +2,11 @@ require_relative '../src/item'
 require_relative '../src/book_methods'
 require_relative '../src/book'
 require_relative '../src/label'
+require_relative '../src/store/preserve_book_label'
 
 class BookMethodsContainer
   include BookMethods
+  include PreserveBookLabel
 
   attr_accessor :items, :labels
 
@@ -23,7 +25,7 @@ RSpec.describe BookMethods do
     before do
       allow(container).to receive(:collect_book_details).and_return(
         genre: 'Fiction',
-        author: 'AuthorName',
+        publisher: 'PublisherName',
         source: 'Source',
         label_title: 'MyLabel',
         publish_date: '2023-01-01',
@@ -48,13 +50,13 @@ RSpec.describe BookMethods do
     context 'when there are books' do
       before do
         allow(book).to receive(:genre).and_return('Fiction')
-        allow(book).to receive(:author).and_return('AuthorName')
+        allow(book).to receive(:publisher).and_return('PublisherName')
         allow(book).to receive(:is_a?).with(Book).and_return(true)
         container.items << book
       end
 
       it 'lists all books' do
-        expect { container.list_books }.to output("Listing all books:\nGenre: Fiction, Author: AuthorName\n").to_stdout
+        expect { container.list_books }.to output("Listing all books:\nGenre: Fiction, Publisher: PublisherName\n").to_stdout
       end
     end
   end

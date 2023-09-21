@@ -37,7 +37,7 @@ module MusicAlbumHandler
   def create_music_album
     album_data = request_music_album_data
     music_album = MusicAlbum.new(album_data)
-    genre.add_item(music_album)
+    music_album.genre.add_item(music_album)
     music_album
   end
 

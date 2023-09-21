@@ -2,9 +2,13 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'label'
 require_relative 'book_methods'
+require_relative 'music_albums_handler'
+require_relative 'genre_handler'
 
 class App
   include BookMethods
+  include GenreHandler
+  include MusicAlbumHandler
   def initialize
     @items = []
     @genres = []
@@ -22,11 +26,11 @@ class App
     when 1
       list_books
     when 2
-      list_music_albums
+      list_all_music_albums(@items)
     when 3
       list_games
     when 4
-      list_genres
+      list_genres(@genres)
     when 5
       list_labels
     when 6
@@ -46,7 +50,7 @@ class App
     when 1
       add_book
     when 2
-      add_music_album
+      add_music_album_to(@items,@genres)
     when 3
       add_game
     end

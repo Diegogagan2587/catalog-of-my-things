@@ -56,7 +56,9 @@ RSpec.describe BookMethods do
       end
 
       it 'lists all books' do
-        expect { container.list_books }.to output("Listing all books:\nGenre: Fiction, Publisher: PublisherName\n").to_stdout
+        expect do
+          container.list_books
+        end.to output("Listing all books:\nGenre: Fiction, Publisher: PublisherName\n").to_stdout
       end
     end
   end

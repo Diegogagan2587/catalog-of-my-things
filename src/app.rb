@@ -5,6 +5,8 @@ require_relative 'book_methods'
 require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
+require_relative 'store/write'
+require_relative 'store/read'
 
 class App
   include BookMethods
@@ -18,10 +20,15 @@ class App
     @labels = []
     @authors = []
     load_from_file
+
+    read = Read.new # initialize read methods
+    read.and_restore_genres(@genres)
+    read.and_restore_albums(@items)
   end
 
   def exit_app
     puts 'Thank you for using this app!'
+    Write.new.store(@items, @genres)
     exit
   end
 

@@ -14,6 +14,7 @@ module BookMethods
 
     store_book_and_label(book, label)
     puts 'Book added successfully.'
+    save_to_file
   end
 
   def list_books

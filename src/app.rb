@@ -5,7 +5,7 @@ require_relative 'book_methods'
 require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
-require_relative '../src/store/write'
+require_relative 'store/write'
 
 class App
   include BookMethods

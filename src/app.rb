@@ -50,7 +50,7 @@ class App
     when 1
       add_book
     when 2
-      add_music_album_to(@items,@genres)
+      add_music_album_to(@items, @genres)
     when 3
       add_game
     end

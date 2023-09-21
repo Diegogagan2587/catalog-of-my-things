@@ -33,7 +33,7 @@ class Write
       next unless (album.class == MusicAlbum)
 
       data_to_store.push({
-                           'genre' => album.genre,
+                           'genre' => album.genre.name,
                            'author' => album.author,
                            'source' => album.source,
                            'label' => album.label,

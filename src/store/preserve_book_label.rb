@@ -38,7 +38,7 @@ module PreserveBookLabel
 
       book_params = {
         genre: book['genre'],
-        author: book['author'],
+        publisher: book['publisher'],
         source: book['source'],
         label: label,
         publish_date: book['publish_date'],

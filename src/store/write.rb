@@ -15,13 +15,14 @@ class Write
   def write_genres(genres)
     puts 'Saving genres into storage...! '
     data_to_store = []
-    genres.each do | genre |
+    genres.each do |genre|
       data_to_store.push({
-        'genre' => genre.name,
-        'number_of_items' => genre.items.length
-      })
+                           'genre' => genre.name,
+                           'number_of_items' => genre.items.length
+                         })
     end
     return if data_to_store.empty?
+
     create_file('genres')
     File.write('./data/genres.json', JSON.pretty_generate(data_to_store))
   end
@@ -30,7 +31,7 @@ class Write
     puts 'Saving music albums into storage...! '
     data_to_store = []
     albums.each do |album|
-      next unless (album.class == MusicAlbum)
+      next unless album.instance_of?(MusicAlbum)
 
       data_to_store.push({
                            'genre' => album.genre.name,

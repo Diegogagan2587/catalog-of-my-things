@@ -5,7 +5,7 @@ module BookMethods
 
     book = Book.new(
       genre: book_details[:genre],
-      author: book_details[:author],
+      publisher: book_details[:publisher],
       source: book_details[:source],
       label: label,
       publish_date: book_details[:publish_date],
@@ -14,6 +14,7 @@ module BookMethods
 
     store_book_and_label(book, label)
     puts 'Book added successfully.'
+    save_to_file
   end
 
   def list_books
@@ -22,7 +23,7 @@ module BookMethods
     else
       puts 'Listing all books:'
       @items.each do |item|
-        puts "Genre: #{item.genre}, Author: #{item.author}" if item.is_a?(Book)
+        puts "Genre: #{item.genre}, Publisher: #{item.publisher}" if item.is_a?(Book)
       end
     end
   end
@@ -44,8 +45,8 @@ def collect_book_details
   puts 'Enter book details:'
   print 'Genre: '
   details[:genre] = gets.chomp
-  print 'Author: '
-  details[:author] = gets.chomp
+  print 'Publisher: '
+  details[:publisher] = gets.chomp
   print 'Source: '
   details[:source] = gets.chomp
   print 'Label: '

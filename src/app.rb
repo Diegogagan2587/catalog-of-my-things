@@ -2,18 +2,22 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'label'
 require_relative 'book_methods'
+require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
 
 class App
   include BookMethods
+  include PreserveBookLabel
   include GenreHandler
   include MusicAlbumHandler
+
   def initialize
     @items = []
     @genres = []
     @labels = []
     @authors = []
+    load_from_file
   end
 
   def exit_app

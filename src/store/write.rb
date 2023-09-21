@@ -7,15 +7,16 @@ class Write
     FileUtils.touch("../data/#{file_name}.json") unless File.exist?("../data/#{file_name}.json")
   end
 
-  def store(album, genre)
-    write_music_albums(album)
-    write_genres(genre)
+  def store(albums, genres)
+    write_music_albums(albums)
+    write_genres(genres)
   end
 
   def write_music_albums(albums)
     puts 'Saving music albums into storage...! '
     data_to_store = []
     albums.each do | album |
+      next unless album.class = MusicAlbum
       data_to_store.push({
         'genre' => album.genre,
         'author' => album.author,

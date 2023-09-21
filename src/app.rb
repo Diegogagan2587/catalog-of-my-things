@@ -5,6 +5,7 @@ require_relative 'book_methods'
 require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
+require_relative '../src/store/write'
 
 class App
   include BookMethods
@@ -22,6 +23,7 @@ class App
 
   def exit_app
     puts 'Thank you for using this app!'
+    Write.new.store(@items, @genres)
     exit
   end
 

@@ -21,7 +21,7 @@ class App
     @authors = []
     load_from_file
 
-    read = Read.new #initialize read methods
+    read = Read.new # initialize read methods
     read.and_restore_genres(@genres)
     read.and_restore_albums(@items)
   end

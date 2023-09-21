@@ -2,14 +2,17 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'label'
 require_relative 'book_methods'
+require_relative '../src/store/preserve_book_label.rb'
 
 class App
   include BookMethods
+  include PreserveBookLabel
   def initialize
     @items = []
     @genres = []
     @labels = []
     @authors = []
+    load_from_file
   end
 
   def exit_app

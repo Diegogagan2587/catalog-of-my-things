@@ -4,17 +4,18 @@ class Author
   attr_accessor :first_name, :last_name
 
   def initialize(first_name, last_name)
-    self.class.id_counter = (self.class.id_counter || 0) + 1
+    @items = []
+    @id = Random.rand(1..1000)
     @first_name = first_name
     @last_name = last_name
-    @id = self.class.id_counter
-    @items = []
   end
 
   attr_reader :id, :items
 
   def add_item(item)
-    @items << item if item.is_a?(Item)
+    return unless item.is_a?(Item)
+
+    @items << item
     item.author = self
   end
 end

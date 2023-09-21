@@ -2,7 +2,7 @@ require_relative 'item'
 require_relative 'book'
 require_relative 'label'
 require_relative 'book_methods'
-require_relative '../src/store/preserve_book_label.rb'
+require_relative '../src/store/preserve_book_label'
 
 class App
   include BookMethods

@@ -1,7 +1,7 @@
 require 'json'
 
 module PreserveBookLabel
-  DATA_DIR = 'data'
+  DATA_DIR = 'data'.freeze
   BOOKS_FILE = File.join(DATA_DIR, 'books.json')
   LABELS_FILE = File.join(DATA_DIR, 'labels.json')
 
@@ -29,13 +29,13 @@ module PreserveBookLabel
 
   def load_books
     return unless File.exist?(BOOKS_FILE)
-    
+
     books = JSON.parse(File.read(BOOKS_FILE))
     books.each do |book|
       label_data = book['label']
       label = find_or_create_label(label_data['title'])
       label.color = label_data['color']
-      
+
       book_params = {
         genre: book['genre'],
         author: book['author'],

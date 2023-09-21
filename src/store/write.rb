@@ -17,7 +17,7 @@ class Write
     data_to_store = []
     genres.each do |genre|
       data_to_store.push({
-                           'genre' => genre.name,
+                           'name' => genre.name,
                            'number_of_items' => genre.items.length
                          })
     end

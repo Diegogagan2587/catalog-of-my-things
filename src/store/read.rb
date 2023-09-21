@@ -7,12 +7,12 @@ class Read
     store = File.open('./data/genres.json')
     genres_data = JSON.parse(store.read)
     genres_data.each { | genre |
-      state.push( Genre.new(genre.name) )
+      state.push( Genre.new(genre["name"]) )
     }
     store.close
   end
   #then restore albums
-  def and_restore_albums()
+  def and_restore_albums(state)
     puts 'Restoring'
   end
 end

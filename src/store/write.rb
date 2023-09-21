@@ -14,6 +14,16 @@ class Write
 
   def write_genres(genres)
     puts 'Saving genres into storage...! '
+    data_to_store = []
+    genres.each do | genre |
+      data_to_store.push({
+        'genre' => genre.name,
+        'number_of_items' => genre.items.length
+      })
+    end
+    return if data_to_store.empty?
+    create_file('genres')
+    File.write('./data/genres.json', JSON.pretty_generate(data_to_store))
   end
 
   def write_music_albums(albums)

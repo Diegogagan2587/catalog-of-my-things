@@ -8,6 +8,10 @@ require_relative 'genre_handler'
 require_relative 'game'
 require_relative 'author'
 require_relative 'game_methods'
+require_relative 'store/write'
+require_relative 'store/read'
+
+
 class App
   include BookMethods
   include PreserveBookLabel
@@ -56,10 +60,12 @@ class App
     return if File.exist?(file_path)
 
     File.open(file_path, 'w') {}
+
   end
 
   def exit_app
     puts 'Thank you for using this app!'
+    Write.new.store(@items, @genres)
     exit
   end
 

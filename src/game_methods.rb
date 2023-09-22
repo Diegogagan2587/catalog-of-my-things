@@ -39,3 +39,27 @@ def create_file_if_not_exists(file_path)
 
   File.open(file_path, 'w')
 end
+
+ # Options to entry a new game
+ def add_game
+  print 'Genre: '
+  genre = gets.chomp
+  print 'Author: '
+  author = gets.chomp
+  print 'Label: '
+  label = gets.chomp
+  print 'Publish date (year): '
+  publish_date = gets.chomp
+  print 'Multiplayer: '
+  multiplayer = gets.chomp
+  print 'Last played at (year): '
+  last_played_at = gets.chomp
+  add_game({
+             genre: genre,
+             author: author,
+             label: label,
+             publish_date: publish_date,
+             multiplayer: multiplayer,
+             last_played_at: last_played_at
+           })
+end

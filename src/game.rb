@@ -12,7 +12,7 @@ class Game < Item
     @multiplayer = options[:multiplayer]
     begin
       @last_played_at = options[:last_played_at] ? Date.parse(options[:last_played_at]) : nil
-    rescue Date::Error => e
+    rescue Date::Error
       puts "Fecha inválida: #{options[:last_played_at]}"
       @last_played_at = nil
     end

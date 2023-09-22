@@ -8,7 +8,11 @@ class Item
     @author = author
     @source = source
     @label = label
-    @publish_date = Date.parse(publish_date) rescue nil
+    @publish_date = begin
+      Date.parse(publish_date)
+    rescue StandardError
+      nil
+    end
   end
 
   def can_be_archived?

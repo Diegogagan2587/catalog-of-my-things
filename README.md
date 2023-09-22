@@ -206,7 +206,7 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+> Would you like to know more about project collaborators?
 
 👤 **Author1**
 
@@ -219,6 +219,12 @@ Example:
 - GitHub: [@githubhandle](https://github.com/githubhandle)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+
+👤 **Diego Vidal**
+
+- GitHub: [@Diegogagan2587](https://github.com/Diegogagan2587)
+- Twitter: [@dieg02587](https://twitter.com/dieg02587)
+- LinkedIn: [diego-vidal-lopez](https://www.linkedin.com/in/diego-vidal-lopez/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

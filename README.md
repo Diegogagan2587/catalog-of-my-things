@@ -184,18 +184,6 @@ To run tests, run the following command:
   rspec test/
 ```
 
-### Deployment
-
-You can deploy this project using:
-
-<!--
-Example:
-
-```sh
-
-```
- -->
-
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 👥 Authors <a name="authors"></a>
@@ -222,9 +210,10 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **User Authentication**
+- [ ] **Advanced Searching and Sorting**
+- [ ] **Interactive UI/UX**
+- [ ] **API Integration**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -238,13 +227,13 @@ Feel free to check the [issues page](https://github.com/Diegogagan2587/catalog-o
 
 ## ⭐️ Show your support <a name="support"></a>
 
-If you like this project let us know with a STAR!
+If you like this project let us know with a STAR⭐!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-We would like to thaks Microverse for giving me the oportunity to build and contribute in projects like this.
+We would like to thaks Microverse for giving us the oportunity to build and contribute in projects like this.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

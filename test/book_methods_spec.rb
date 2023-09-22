@@ -33,6 +33,7 @@ RSpec.describe BookMethods do
       )
       allow(container).to receive(:find_or_create_label).and_return(label)
       allow(container).to receive(:store_book_and_label)
+      allow(container).to receive(:save_to_file)
     end
 
     it 'adds a book successfully' do

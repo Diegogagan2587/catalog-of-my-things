@@ -1,28 +1,32 @@
 require_relative '../src/music_albums_handler'
 require_relative '../src/music_album'
+require_relative '../src/genre'
 require_relative '../src/item'
 require_relative '../src/app'
 
+
 describe MusicAlbumHandler do
+  include MusicAlbumHandler
   before :each do
     # thinsg will be done before each test
     @album_attributes = {
-      genre: 'Rock',
+      genre: Genre.new('Rock'),
       author: 'Metallica',
       source: 'Internet Stream',
       label: 'Best Exits',
       publish_date: Date.new(2023, 9, 19),
       on_spotify: false
     }
-    @music_album_handler = MusicAlbumHandler.new
   end
 
-  it 'Should Add a music album' do
+  it 'Should Add a music album to Items and Genres' do
     music_album = MusicAlbum.new(@album_attributes)
     items = []
-    @music_album_handler.add_item(music_album, items)
-
+    genres = []
+    allow(self).to receive(:create_music_album).and_return(music_album)
+    add_music_album_to(items, genres)
     expect(items).to include(music_album)
+    expect(genres).to include(music_album.genre)
   end
 
   it 'Should List all music albums' do

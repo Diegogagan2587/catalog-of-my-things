@@ -42,3 +42,19 @@ CREATE TABLE IF NOT EXISTS label (
     title TEXT,
     color TEXT
 );
+
+/* Create Games table (child table of item) */
+CREATE TABLE Games(
+  id      INT GENERATED ALWAYS AS IDENTITY,
+  genre   varchar(50),
+  author  varchar(50),
+  label   varchar(50),
+  publish_date  date,
+  archived  bool,
+  multiplayer bool,
+  last_played_at  date,
+  author_id   INT REFERENCES Author(id),
+  genre_id INT REFERENCES Genre(id),
+  label_id INT REFERENCES Label(id),
+  PRIMARY KEY(id)
+);

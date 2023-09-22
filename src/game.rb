@@ -4,7 +4,8 @@ class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
   def initialize(options = {})
-    super(options[:genre],
+    super(
+      options[:genre],
       options[:author],
       options[:source],
       options[:label],

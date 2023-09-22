@@ -189,7 +189,7 @@ def create_game(options)
            })
 end
 
- def add_author(author, authors)
+def add_author(author, authors)
   author_input = {
     'id' => author.id,
     'first_name' => author.first_name,

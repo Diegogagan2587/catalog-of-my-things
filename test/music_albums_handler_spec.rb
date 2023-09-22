@@ -58,7 +58,7 @@ describe MusicAlbumHandler do
       Label:\\s*Best Exits\\s*Publish_date:\\s*2023-09-19\\s*Is on spotify\\?:\\s*false\\s*
     PATTERN
 
-    expect { @music_album_handler.list_all_music_albums(items) }.to output(
+    expect { list_all_music_albums(items) }.to output(
       expected_output
     ).to_stdout
   end

@@ -63,3 +63,12 @@ end
              last_played_at: last_played_at
            })
 end
+
+def list_games
+  puts 'Games: '
+  @games.each do |game|
+    puts "Title: #{game['label']}, Author: #{game['author']}, Genre: #{game['genre']}, "
+    print "Archived: #{game['archived']}"
+    puts "\n"
+  end
+end

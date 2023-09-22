@@ -42,7 +42,7 @@ describe MusicAlbumHandler do
       Id:\\s*2\\s*Genre:\\s*Rock\\s*Author:\\s*Metallica\\s*Source:\\s*Internet Stream\\s*
       Label:\\s*Best Exits\\s*Publish_date:\\s*2023-09-19\\s*Is on spotify\\?:\\s*false
     PATTERN
-    expect { @music_album_handler.list_all_music_albums(items) }.to output(
+    expect { list_all_music_albums(items) }.to output(
       expected_output
     ).to_stdout
   end

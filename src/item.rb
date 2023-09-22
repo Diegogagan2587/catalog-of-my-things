@@ -8,11 +8,17 @@ class Item
     @author = author
     @source = source
     @label = label
-    @publish_date = publish_date
+    @publish_date = begin
+      Date.parse(publish_date)
+    rescue StandardError
+      nil
+    end
   end
 
   def can_be_archived?
-    years_since_published = Time.now.year - @published_date.year
+    return false unless @publish_date
+
+    years_since_published = Time.now.year - @publish_date.year
     years_since_published >= 10
   end
 

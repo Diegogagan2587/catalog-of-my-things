@@ -5,6 +5,8 @@ require_relative 'book_methods'
 require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
+require_relative 'game'
+require_relative 'author'
 require_relative 'store/write'
 require_relative 'store/read'
 
@@ -13,17 +15,43 @@ class App
   include PreserveBookLabel
   include GenreHandler
   include MusicAlbumHandler
-
   def initialize
+    create_data
     @items = []
     @genres = []
     @labels = []
     @authors = []
     load_from_file
+    load_data_from_files
+  end
 
-    read = Read.new # initialize read methods
-    read.and_restore_genres(@genres)
-    read.and_restore_albums(@items)
+  def create_data
+    return if Dir.exist?('./data')
+
+    Dir.mkdir('./data')
+    create_file_if_not_exists('./data/games.json')
+    create_file_if_not_exists('./data/authors.json')
+  end
+
+  def load_data_from_files
+    @games = load_json_file('./data/games.json', [])
+    @authors = load_json_file('./data/authors.json', [])
+  end
+
+  def load_json_file(file_path, default_value)
+    return default_value unless File.exist?(file_path)
+
+    file = File.open(file_path)
+    file_data = file.read
+    return default_value if file_data.empty?
+
+    JSON.parse(file_data)
+  rescue JSON::ParserError
+    default_value
+  end
+
+  def create_file_if_not_exists(file_path)
+    nil if File.exist?(file_path)
   end
 
   def exit_app
@@ -63,8 +91,68 @@ class App
     when 2
       add_music_album_to(@items, @genres)
     when 3
-      add_game
+      enter_new_game
     end
+  end
+
+  def enter_new_game
+    print 'Genre: '
+    genre = gets.chomp
+    print 'Author: '
+    author = gets.chomp
+    print 'Label: '
+    label = gets.chomp
+    print 'Publish date (year): '
+    publish_date = gets.chomp
+    print 'Multiplayer: '
+    multiplayer = gets.chomp
+    print 'Last played at (year): '
+    last_played_at = gets.chomp
+    add_game({
+               genre: genre,
+               author: author,
+               label: label,
+               publish_date: publish_date,
+               multiplayer: multiplayer,
+               last_played_at: last_played_at
+             })
+  end
+
+  def list_games
+    puts 'Games: '
+    @games.each do |game|
+      puts "Title: #{game['label']}, Author: #{game['author']}, Genre: #{game['genre']}, "
+      print "Archived: #{game['archived']}"
+      puts "\n"
+    end
+  end
+
+  def list_authors
+    puts 'Authors: '
+    @authors.each do |author|
+      puts "Name: #{author['first_name']} #{author['last_name']}, ID: #{author['id']}"
+    end
+  end
+
+  def add_game(options)
+    names = options[:author].split # Split the name at the spaces.
+    first_name = names[0]
+    last_name = names[1] if names.length > 1
+    author_obj = Author.new(first_name, last_name)
+    add_author(author_obj, @authors)
+    game = create_game(options)
+    game_input = {
+      'id' => game.id,
+      'author' => options[:author],
+      'genre' => game.genre,
+      'label' => game.label,
+      'publish_date' => game.publish_date,
+      'multiplayer' => game.multiplayer,
+      'last_played_at' => game.last_played_at,
+      'archived' => game.can_be_archived?
+    }
+    @games << game_input
+    File.write('./data/games.json', JSON.pretty_generate(@games))
   end
 
   def run
@@ -78,17 +166,35 @@ class App
       '7. Add Item',
       '8. Exit'
     ]
-
     puts "Welcome, please select an option by entering the corresponding number: \n\n"
     input = gets.chomp.to_i
-
     exit_app if input == 8
     add_element(input) if input == 7
     puts 'Invalid option, try again.' if input > 8
-
     option_select(input)
     puts "\nPress Enter key to continue..."
     gets
     run
   end
+end
+
+def create_game(options)
+  Game.new({
+             genre: options[:genre],
+             author: options[:author],
+             label: options[:label],
+             publish_date: options[:publish_date],
+             multiplayer: options[:multiplayer],
+             last_played_at: options[:last_played_at]
+           })
+end
+
+def add_author(author, authors)
+  author_input = {
+    'id' => author.id,
+    'first_name' => author.first_name,
+    'last_name' => author.last_name
+  }
+  authors << author_input
+  File.write('./data/authors.json', JSON.pretty_generate(authors))
 end

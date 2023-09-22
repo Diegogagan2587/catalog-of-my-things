@@ -7,7 +7,6 @@ require_relative 'music_albums_handler'
 require_relative 'genre_handler'
 require_relative 'game'
 require_relative 'author'
-require_relative 'game_methods'
 require_relative 'store/write'
 require_relative 'store/read'
 
@@ -140,7 +139,7 @@ class App
     first_name = names[0]
     last_name = names[1] if names.length > 1
     author_obj = Author.new(first_name, last_name)
-    add_author(author_obj)
+    add_author(author_obj, @authors)
     game = create_game(options)
     game_input = {
       'id' => game.id,
@@ -154,16 +153,6 @@ class App
     }
     @games << game_input
     File.write('./data/games.json', JSON.pretty_generate(@games))
-  end
-
-  def add_author(author)
-    author_input = {
-      'id' => author.id,
-      'first_name' => author.first_name,
-      'last_name' => author.last_name
-    }
-    @authors << author_input
-    File.write('./data/authors.json', JSON.pretty_generate(@authors))
   end
 
   def run
@@ -198,4 +187,14 @@ def create_game(options)
              multiplayer: options[:multiplayer],
              last_played_at: options[:last_played_at]
            })
+end
+
+ def add_author(author, authors)
+  author_input = {
+    'id' => author.id,
+    'first_name' => author.first_name,
+    'last_name' => author.last_name
+  }
+  authors << author_input
+  File.write('./data/authors.json', JSON.pretty_generate(authors))
 end

@@ -8,14 +8,11 @@ require_relative 'genre_handler'
 require_relative 'game'
 require_relative 'author'
 require_relative 'game_methods'
-
-
 class App
   include BookMethods
   include PreserveBookLabel
   include GenreHandler
   include MusicAlbumHandler
-
   def initialize
     create_data
     @items = []
@@ -23,45 +20,39 @@ class App
     @labels = []
     @authors = []
     load_from_file
-    create_data
+    load_data_from_files
   end
-
   # Creates a data directory if not exists
   def create_data
     return if Dir.exist?('./data')
-
     Dir.mkdir('./data')
+    create_file_if_not_exists('./data/games.json')
+    create_file_if_not_exists('./data/authors.json')
   end
-
   # Sets the arrays to be empty or to be the parsed info from the files
   def load_data_from_files
     @games = load_json_file('./data/games.json', [])
     @authors = load_json_file('./data/authors.json', [])
   end
-
   # A method to check if the files are empty or not, and parse the info
   def load_json_file(file_path, default_value)
+    return default_value unless File.exist?(file_path)
     file = File.open(file_path)
     file_data = file.read
-    if file_data.empty?
-      default_value
-    else
-      JSON.parse(file_data)
-    end
+    return default_value if file_data.empty?
+    JSON.parse(file_data)
+  rescue JSON::ParserError
+    default_value
   end
-
   # Creates the json files if they don't exist
   def create_file_if_not_exists(file_path)
     return if File.exist?(file_path)
-
-    File.open(file_path, 'w')
+    File.open(file_path, 'w') {}
   end
-
   def exit_app
     puts 'Thank you for using this app!'
     exit
   end
-
   def option_select(option)
     case option
     when 1
@@ -78,7 +69,6 @@ class App
       list_authors
     end
   end
-
   def add_element(_input)
     puts [
       'Select an option',
@@ -96,7 +86,6 @@ class App
       enter_new_game
     end
   end
-
   # Options to entry a new game
   def enter_new_game
     print 'Genre: '
@@ -120,7 +109,6 @@ class App
                last_played_at: last_played_at
              })
   end
-
   def list_games
     puts 'Games: '
     @games.each do |game|
@@ -129,23 +117,19 @@ class App
       puts "\n"
     end
   end
-
   def list_authors
     puts 'Authors: '
     @authors.each do |author|
       puts "Name: #{author['first_name']} #{author['last_name']}, ID: #{author['id']}"
     end
   end
-
   def add_game(options)
     names = options[:author].split # Split the name at the spaces.
     first_name = names[0]
     last_name = names[1] if names.length > 1
     author_obj = Author.new(first_name, last_name)
     add_author(author_obj)
-
     game = create_game(options)
-
     game_input = {
       'id' => game.id,
       'author' => options[:author],
@@ -156,22 +140,18 @@ class App
       'last_played_at' => game.last_played_at,
       'archived' => game.can_be_archived?
     }
-
     @games << game_input
     File.write('./data/games.json', JSON.pretty_generate(@games))
   end
-
   def add_author(author)
     author_input = {
       'id' => author.id,
       'first_name' => author.first_name,
       'last_name' => author.last_name
     }
-
     @authors << author_input
     File.write('./data/authors.json', JSON.pretty_generate(@authors))
   end
-
   def run
     puts [
       '1. List all books',
@@ -183,21 +163,17 @@ class App
       '7. Add Item',
       '8. Exit'
     ]
-
     puts "Welcome, please select an option by entering the corresponding number: \n\n"
     input = gets.chomp.to_i
-
     exit_app if input == 8
     add_element(input) if input == 7
     puts 'Invalid option, try again.' if input > 8
-
     option_select(input)
     puts "\nPress Enter key to continue..."
     gets
     run
   end
 end
-
 def create_game(options)
   Game.new({
              genre: options[:genre],

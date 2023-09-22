@@ -60,7 +60,6 @@ class App
     return if File.exist?(file_path)
 
     File.open(file_path, 'w') {}
-
   end
 
   def exit_app

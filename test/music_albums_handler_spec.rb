@@ -4,7 +4,6 @@ require_relative '../src/genre'
 require_relative '../src/item'
 require_relative '../src/app'
 
-
 describe MusicAlbumHandler do
   include MusicAlbumHandler
   before :each do

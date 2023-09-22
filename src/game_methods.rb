@@ -103,3 +103,14 @@ def add_game(options)
   @games << game_input
   File.write('./data/games.json', JSON.pretty_generate(@games))
 end
+
+def add_author(author)
+  author_input = {
+    'id' => author.id,
+    'first_name' => author.first_name,
+    'last_name' => author.last_name
+  }
+
+  @authors << author_input
+  File.write('./data/authors.json', JSON.pretty_generate(@authors))
+end

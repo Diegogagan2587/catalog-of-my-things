@@ -8,7 +8,7 @@ describe MusicAlbum do
       author: 'Metallica',
       source: 'Internet Stream',
       label: 'Best Exits',
-      publish_date: Date.new(2023, 9, 19),
+      publish_date: '2023-9-19',
       on_spotify: false
     }
 
@@ -19,7 +19,7 @@ describe MusicAlbum do
     expect(@album.author).to eql(@album_attributes[:author])
     expect(@album.source).to eql(@album_attributes[:source])
     expect(@album.label).to eql(@album_attributes[:label])
-    expect(@album.publish_date).to eql(@album_attributes[:publish_date])
+    expect(@album.publish_date).to eql(Date.new(2023, 9, 19))
     expect(@album.on_spotify).to eql(@album_attributes[:on_spotify])
   end
 end

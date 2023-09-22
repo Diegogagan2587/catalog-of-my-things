@@ -13,7 +13,7 @@ describe MusicAlbumHandler do
       author: 'Metallica',
       source: 'Internet Stream',
       label: 'Best Exits',
-      publish_date: Date.new(2023, 9, 19),
+      publish_date: '2023-9-19',
       on_spotify: false
     }
   end

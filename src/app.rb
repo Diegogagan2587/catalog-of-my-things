@@ -5,6 +5,10 @@ require_relative 'book_methods'
 require_relative '../src/store/preserve_book_label'
 require_relative 'music_albums_handler'
 require_relative 'genre_handler'
+require_relative 'game'
+require_relative 'author'
+require_relative 'game_methods'
+
 
 class App
   include BookMethods

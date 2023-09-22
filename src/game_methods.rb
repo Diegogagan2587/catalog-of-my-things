@@ -104,7 +104,7 @@ def add_game(options)
   File.write('./data/games.json', JSON.pretty_generate(@games))
 end
 
-def add_author(author)
+ def add_author(author)
   author_input = {
     'id' => author.id,
     'first_name' => author.first_name,
@@ -113,4 +113,15 @@ def add_author(author)
 
   @authors << author_input
   File.write('./data/authors.json', JSON.pretty_generate(@authors))
+end
+
+def create_game(options)
+  Game.new({
+             genre: options[:genre],
+             author: options[:author],
+             label: options[:label],
+             publish_date: options[:publish_date],
+             multiplayer: options[:multiplayer],
+             last_played_at: options[:last_played_at]
+           })
 end

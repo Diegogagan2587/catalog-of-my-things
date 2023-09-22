@@ -72,3 +72,34 @@ def list_games
     puts "\n"
   end
 end
+
+def list_authors
+  puts 'Authors: '
+  @authors.each do |author|
+    puts "Name: #{author['first_name']} #{author['last_name']}, ID: #{author['id']}"
+  end
+end
+
+def add_game(options)
+  names = options[:author].split # Split the name at the spaces.
+  first_name = names[0]
+  last_name = names[1] if names.length > 1
+  author_obj = Author.new(first_name, last_name)
+  add_author(author_obj)
+
+  game = create_game(options)
+
+  game_input = {
+    'id' => game.id,
+    'author' => options[:author],
+    'genre' => game.genre,
+    'label' => game.label,
+    'publish_date' => game.publish_date,
+    'multiplayer' => game.multiplayer,
+    'last_played_at' => game.last_played_at,
+    'archived' => game.can_be_archived?
+  }
+
+  @games << game_input
+  File.write('./data/games.json', JSON.pretty_generate(@games))
+end

@@ -156,12 +156,6 @@ To run tests, run the following command:
 
 ## 👥 Authors <a name="authors"></a>
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
 👤 **Ricardo Martínez**
 
 - GitHub: [@bohaz](https://github.com/bohaz)
@@ -173,6 +167,12 @@ To run tests, run the following command:
 - GitHub: [@Diegogagan2587](https://github.com/Diegogagan2587)
 - Twitter: [@dieg02587](https://twitter.com/dieg02587)
 - LinkedIn: [diego-vidal-lopez](https://www.linkedin.com/in/diego-vidal-lopez/)
+
+👤 **khaled alaa**
+
+- GitHub: [Khaled-Alaa-1](https://github.com/Khaled-Alaa-1)
+- Twitter: [@Khaled86756991](https://twitter.com/Khaled86756991)
+- LinkedIn: [Khaled Alaa](https://www.linkedin.com/in/khaled-alaa-594bb9256/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

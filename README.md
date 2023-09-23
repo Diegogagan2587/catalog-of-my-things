@@ -42,6 +42,8 @@
 
  <img src="./catalog_of_my_things.png" style="left: auto; right: auto; width: 50%;">
 
+ [Click here](https://youtu.be/X8ozhDjzom0) to see our video presentation.
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>

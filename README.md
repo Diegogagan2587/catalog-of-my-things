@@ -42,7 +42,11 @@
 
  <img src="./catalog_of_my_things.png" style="left: auto; right: auto; width: 50%;">
 
- [Click here](https://youtu.be/X8ozhDjzom0) to see our video presentation.
+#### See Our Video Presentation Below:
+
+[![image](https://github.com/user-attachments/assets/53018320-01c7-4503-a654-b077f28be4fc)](https://drive.google.com/file/d/1Dzu05UBPL3suVa6LJ6wo5DnWu63K1nEX/view?usp=sharing)
+[Click here](https://drive.google.com/file/d/1Dzu05UBPL3suVa6LJ6wo5DnWu63K1nEX/view?usp=sharing)  to see our video presentation.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 
